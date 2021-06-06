@@ -1,0 +1,76 @@
+<div class="alert alert-{{$ctrl.alert.type}}" ng-show="$ctrl.alert.show">
+    <ui>
+        <li ng-repeat="message in $ctrl.alert.messages">{{message}}</li>
+    </ui>
+</div>
+<div class="card">
+    <div class="card-header" ng-show="$ctrl.form.isShowGameMenu">
+        <div class="row">
+            <div class="col-md-10"><h5>Games List</h5></div>
+                <div class="col-4">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action"  data-toggle="list"
+                           role="tab" aria-controls="home" ng-repeat="game in $ctrl.form.games" ng-click="$ctrl.chooseGame(game)">{{game}}</a>
+                    </div>
+                </div>
+            <div class="col-md-2 mr-auto">
+                <form class="form-inline">
+                    <div class="btn-group btn-group-lg"  role="group" aria-label="Basic example">
+                        <button class="btn btn-primary" ng-click="$ctrl.getGames()">Load Games</button>
+                        <button class="btn btn-primary" ng-click="$ctrl.createNewGame()">Create New Game</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" style="margin-bottom:10px" ng-show="$ctrl.form.isShowAddPlayer">
+        <div class="card">
+            <div class="card-header"><h5>{{$ctrl.form.title}}</h5></div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="player" class="col-sm-2 col-form-label">Player Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="player" ng-model="$ctrl.form.player">
+                        </div>
+                    </div>
+                    <button class="btn btn-success mb-2" ng-click="$ctrl.addPlayer()">Add Player</button>
+                    <button class="btn btn-danger mb-2" ng-click="$ctrl.closeForm()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body" ng-show="$ctrl.form.isShowBoard">
+                <form>
+                <table class="table table-condensed table-hover">
+                    <tr>
+                        <td><p class="{{($ctrl.form.players[0] && $ctrl.form.players[0] === $ctrl.form.player) ? 'text-primary font-weight-bold':'text-secondary'}}">{{$ctrl.form.players[0]}}</p></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(6)" ng-disabled="$ctrl.isOtherTurn(0)">{{$ctrl.form.pits[6]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(5)" ng-disabled="$ctrl.isOtherTurn(0)">{{$ctrl.form.pits[5]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(4)" ng-disabled="$ctrl.isOtherTurn(0)">{{$ctrl.form.pits[4]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(3)" ng-disabled="$ctrl.isOtherTurn(0)">{{$ctrl.form.pits[3]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(2)" ng-disabled="$ctrl.isOtherTurn(0)">{{$ctrl.form.pits[2]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(1)" ng-disabled="$ctrl.isOtherTurn(0)">{{$ctrl.form.pits[1]}}</button></td>
+                        <td><p class="{{($ctrl.form.players[1] && $ctrl.form.players[1] === $ctrl.form.player) ? 'text-primary font-weight-bold':'text-secondary'}}">{{$ctrl.form.players[1]}}</p></td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn btn-lg btn-primary" disabled>{{$ctrl.form.pits[7]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(1)" ng-disabled="$ctrl.isOtherTurn(1)">{{$ctrl.form.pits[8]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(2)" ng-disabled="$ctrl.isOtherTurn(1)">{{$ctrl.form.pits[9]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(3)" ng-disabled="$ctrl.isOtherTurn(1)">{{$ctrl.form.pits[10]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(4)" ng-disabled="$ctrl.isOtherTurn(1)">{{$ctrl.form.pits[11]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(5)" ng-disabled="$ctrl.isOtherTurn(1)">{{$ctrl.form.pits[12]}}</button></td>
+                        <td><button class="btn btn-primary" ng-click="$ctrl.move(6)" ng-disabled="$ctrl.isOtherTurn(1)">{{$ctrl.form.pits[13]}}</button></td>
+                        <td><button class="btn btn-lg btn-primary" disabled>{{$ctrl.form.pits[14]}}</button></td>
+                    </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
